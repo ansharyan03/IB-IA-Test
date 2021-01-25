@@ -31,9 +31,14 @@ public class Main extends JFrame{
         double materialThickness = 0.125;
         Material aluminum = new Material("aluminum", alDensity, 25);
 
+        /*
         ArrayList<Piece> pieces = new ArrayList<Piece>();
         ArrayList<Piece> chassisPieces = new ArrayList<Piece>();
         ArrayList<Piece> premadePieces = new ArrayList<Piece>();
+        */
+        PartList pieces = new PartList(null);
+        PartList chassisPieces = new PartList(null);
+        PartList premadePieces = new PartList(null);
         setTitle("Ansh's Robotics Calculator");
         //setting up our window elements
         int resX = 500, resY = 500;
@@ -68,10 +73,10 @@ public class Main extends JFrame{
                 double totalWeight = 0;
                 double totalPrice = 0;
                 for(int i = 0; i < chassisPieces.size(); i++){
-                    pieces.add(chassisPieces.get(i));
+                    pieces.addTail(chassisPieces.get(i));
                 }
                 for(int i = 0; i < premadePieces.size(); i++){
-                    pieces.add(premadePieces.get(i));
+                    pieces.addTail(premadePieces.get(i));
                 }
                 for(int i = 0; i < pieces.size(); i++){
                     totalWeight += pieces.get(i).getWeight();
@@ -89,7 +94,8 @@ public class Main extends JFrame{
                 double width = keyboardInput.nextDouble();
                 double height = keyboardInput.nextDouble();
                 Piece pieceToAdd = new Piece(length, width, height, aluminum, materialThickness);
-                chassisPieces.add(new Piece(length, width, height, aluminum, materialThickness));
+                //chassisPieces.addTail(new Piece(length, width, height, aluminum, materialThickness));
+                chassisPieces.addTail(pieceToAdd);
                 data[0] = pieceToAdd.toString();
                 data[1] = Math.round(pieceToAdd.getPrice() * 100.0)/100.0;
                 data[2] = Math.round(pieceToAdd.getWeight()*100.0)/100.0;
@@ -113,7 +119,7 @@ public class Main extends JFrame{
                     @Override
                     public void actionPerformed(ActionEvent e){
                         int index = pieceSelector.getSelectedIndex();
-                        premadePieces.add(new Piece(textFile.get(index)[0], Double.parseDouble(textFile.get(index)[1]), Double.parseDouble(textFile.get(index)[2])));
+                        premadePieces.addTail(new Piece(textFile.get(index)[0], Double.parseDouble(textFile.get(index)[1]), Double.parseDouble(textFile.get(index)[2])));
                         data[0] = textFile.get(index)[0];
                         data[1] = Math.round(Double.parseDouble(textFile.get(index)[1]) * 100.0)/100.0;
                         data[2] = Math.round(Double.parseDouble(textFile.get(index)[2]) * 100.0)/100.0;
