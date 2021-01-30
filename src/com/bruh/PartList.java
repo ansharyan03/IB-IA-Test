@@ -2,6 +2,10 @@ package com.bruh;
 
 import java.util.LinkedList;
 
+// this is a legacy class, file not required for program to run.
+//it only works outside of ActionListeners, so I excluded it from the final project
+//left here for reference purposes
+
 public class PartList extends LinkedList {
     private Piece first;
 
@@ -13,8 +17,11 @@ public class PartList extends LinkedList {
     public int size(){
         Piece current = first;
         int i = 0;
-        while(current.getNext() != null){
-            i++;
+        if(current != null){
+            while(current.getNext() != null){
+                current = current.getNext();
+                i++;
+            }
         }
         return i;
     }
@@ -63,21 +70,28 @@ public class PartList extends LinkedList {
     }
     public void set(int index, Piece toSet){
         Piece current = get(index);
-        current.getPrevious().setNext(toSet);
-        toSet.setPrevious(current.getPrevious());
-        toSet.setNext(current.getNext());
-        current.getNext().setPrevious(toSet);
-        current.setNext(null);
-        current.setPrevious(null);
+        if(!isEmpty()){
+            current.getPrevious().setNext(toSet);
+            toSet.setPrevious(current.getPrevious());
+            toSet.setNext(current.getNext());
+            current.getNext().setPrevious(toSet);
+            current.setNext(null);
+            current.setPrevious(null);
+        }
+        else{
+            first = toSet;
+        }
     }
 
+
     public void addTail(Piece toAdd){
+        System.out.println(toAdd);
         if(!isEmpty()){
             toAdd.setPrevious(getLast());
             getLast().setNext(toAdd);
         }
         else{
-            set(0, toAdd);
+            first = new Piece(toAdd.toString(), toAdd.getPrice(), toAdd.getWeight());
         }
     }
 
@@ -92,9 +106,14 @@ public class PartList extends LinkedList {
     }
 
     public void addHead(Piece toAdd){
-        toAdd.setNext(first);
-        first.setPrevious(toAdd);
-        first = toAdd;
+        if(!isEmpty()){
+            toAdd.setNext(first);
+            first.setPrevious(toAdd);
+            first = toAdd;
+        }
+        else{
+            first = toAdd;
+        }
     }
 
     public void removeTail(){
