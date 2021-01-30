@@ -3,8 +3,7 @@ package com.bruh;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.RandomAccessFile;
+
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
