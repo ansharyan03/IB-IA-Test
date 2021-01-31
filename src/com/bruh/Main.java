@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +29,13 @@ public class Main extends JFrame{
         }
     }
 
-    private Main() {
+    private Main() throws IOException {
+        //setting up files
+        File workingFile = new File("savedRobots.txt");
+        if(!workingFile.exists()) {
+            workingFile.createNewFile();
+        }
+        RandomAccessFile savedBots = new RandomAccessFile("savedRobots.txt", "rw");
         //setting up variables required for program
         final double alDensity = 0.0968211426; //in pounds per cubic inch
         double materialThickness = 0.125;
@@ -74,6 +83,19 @@ public class Main extends JFrame{
                     totalPrice += piece.getPrice();
                 }
                 JOptionPane.showMessageDialog(endButton, "your robot's total weight is " + Math.round(totalWeight* 100.0)/100.0 + " pounds and costs $" + Math.round(totalPrice*100.0)/100.0);
+                String rowToAdd = "";
+                try {
+                    for (int i = 0; i < pieces.size(); i++) {
+                        rowToAdd = (pieces.get(i).toString() + ", " + pieces.get(i).getPrice() + ", " + pieces.get(i).getWeight() + "\n");
+                        savedBots.seek(savedBots.length());
+                        savedBots.write(rowToAdd.getBytes());
+                    }
+                    savedBots.seek(savedBots.length());
+                    savedBots.write(("end robot weight: " + totalWeight + ", price: " + totalPrice + ".").getBytes());
+                }
+                catch(Exception ioException){
+                    System.out.println("failed to save robot data to file");
+                }
                 System.exit(0);
             }
         });
@@ -92,7 +114,6 @@ public class Main extends JFrame{
                 data[0] = pieceToAdd.toString();
                 data[1] = Math.round(pieceToAdd.getPrice() * 100.0)/100.0;
                 data[2] = Math.round(pieceToAdd.getWeight() * 100.0)/100.0;
-                System.out.println(data[0].toString() + data[1] + data[2].getClass());
                 piecesModel.addRow(data);
             }
         });
@@ -152,7 +173,7 @@ public class Main extends JFrame{
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new Main(); // constructs a Main object that we added a constructor for
         //since we inherited the JFrame class in our Main class, it successfully creates a window
     }
