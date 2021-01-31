@@ -1,6 +1,10 @@
-﻿Generic CAN Motor,price,weight
-RoboRIO,,
-Pneumatic Wheel,,
-Gearbox,,
-Traction wheel,,
-Swerve drive cage,,
+﻿Generic CAN Motor,1,1
+RoboRIO,1,1
+Pneumatic Wheel,1,1
+Gearbox,1,1
+Traction wheel,1,1
+Swerve drive cage,1,1
+MKBattery 12v,30,12.89
+FRC Kit of Parts,1600,50
+Aluminum C-Channel (72 in),59,2.6
+Aluminum C-Channel (30 in),29,1.02
