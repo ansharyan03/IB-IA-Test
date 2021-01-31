@@ -1,6 +1,6 @@
 package com.bruh;
 
-public class Piece {
+public class Piece implements Node{
     private String pieceName;
     private Material currentMat;
     private double volumeTaken;
