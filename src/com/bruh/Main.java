@@ -11,7 +11,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class Main extends JFrame{
-    //private static String[][] textFile = new String[10][3];
     private static ArrayList<String[]> textFile = new ArrayList<String[]>();
     //here, create a 2d array
     static{
@@ -43,10 +42,12 @@ public class Main extends JFrame{
         LinkedList<Piece> pieces = new LinkedList<Piece>();
         LinkedList<Piece> chassisPieces = new LinkedList<Piece>();
         LinkedList<Piece> premadePieces = new LinkedList<Piece>();
+
         //setting up our window elements
         setTitle("Ansh's Robotics Calculator");
         int resX = 500, resY = 500;
         setSize(resX, resY);
+        setLocation(new Point(550 , 200));
         setLayout(new GridLayout(2, 1));
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(Color.YELLOW);
@@ -126,6 +127,7 @@ public class Main extends JFrame{
                 }
                 JFrame secondFrame = new JFrame("select a part!");
                 secondFrame.setSize(400, 100);
+                secondFrame.setLocation(getLocation().x+50, 100 + getLocation().y);
                 JComboBox pieceSelector = new JComboBox(menuItems);
                 JButton addPiece = new JButton("add the selected piece to your robot build");
                 addPiece.setBounds(100, 100, 100, 50);
