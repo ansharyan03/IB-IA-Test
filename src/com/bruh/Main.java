@@ -40,8 +40,6 @@ public class Main extends JFrame{
         Material aluminum = new Material("aluminum", alDensity, 25);
 
         LinkedList<Piece> pieces = new LinkedList<Piece>();
-        LinkedList<Piece> chassisPieces = new LinkedList<Piece>();
-        LinkedList<Piece> premadePieces = new LinkedList<Piece>();
 
         //setting up our window elements
         setTitle("Ansh's Robotics Calculator");
@@ -65,8 +63,12 @@ public class Main extends JFrame{
         premadeButton.setBounds(300, 300, 100, 60);
         JButton endButton = new JButton("View robot stats and end application");
         endButton.setBounds(500, 100, 100, 60);
+        JButton removeButton = new JButton("Remove selected");
+        removeButton.setBounds(300, 100, 100, 60);
+        JButton duplicateButton = new JButton("Duplicate selected");
+        duplicateButton.setBounds(600, 100, 100, 60);
         String[] columnNames = {"Part", "Price", "Weight"};
-        Object[] data = new Object[3];
+        Object[] data = new Object[columnNames.length];
         JTable table = new JTable();
         DefaultTableModel piecesModel = new DefaultTableModel();
         piecesModel.setColumnIdentifiers(columnNames);
@@ -76,13 +78,12 @@ public class Main extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 double totalWeight = 0;
                 double totalPrice = 0;
-                pieces.addAll(chassisPieces);
-                pieces.addAll(premadePieces);
                 for (Piece piece : pieces) {
                     totalWeight += piece.getWeight();
                     totalPrice += piece.getPrice();
                 }
-                JOptionPane.showMessageDialog(endButton, "your robot's total weight is " + Math.round(totalWeight* 100.0)/100.0 + " pounds and costs $" + Math.round(totalPrice*100.0)/100.0);
+                JOptionPane.showMessageDialog(endButton, "your robot's total weight is " + Math.round(totalWeight* 100.0)/100.0 +
+                        " pounds and costs $" + Math.round(totalPrice*100.0)/100.0);
                 String rowToAdd = "";
                 try {
                     for (int i = 0; i < pieces.size(); i++) {
@@ -109,8 +110,7 @@ public class Main extends JFrame{
                 double width = keyboardInput.nextDouble();
                 double height = keyboardInput.nextDouble();
                 Piece pieceToAdd = new Piece(length, width, height, aluminum, materialThickness);
-                //chassisPieces.addTail(new Piece(length, width, height, aluminum, materialThickness));
-                chassisPieces.add(pieceToAdd);
+                pieces.add(pieceToAdd);
                 data[0] = pieceToAdd.toString();
                 data[1] = Math.round(pieceToAdd.getPrice() * 100.0)/100.0;
                 data[2] = Math.round(pieceToAdd.getWeight() * 100.0)/100.0;
@@ -136,7 +136,7 @@ public class Main extends JFrame{
                     public void actionPerformed(ActionEvent e){
                         int index = pieceSelector.getSelectedIndex();
                         Piece pieceToAdd = new Piece(textFile.get(index)[0], Double.parseDouble(textFile.get(index)[1]), Double.parseDouble(textFile.get(index)[2]));
-                        premadePieces.add(pieceToAdd);
+                        pieces.add(pieceToAdd);
                         data[0] = textFile.get(index)[0];
                         data[1] = Math.round(Double.parseDouble(textFile.get(index)[1]) * 100.0)/100.0;
                         data[2] = Math.round(Double.parseDouble(textFile.get(index)[2]) * 100.0)/100.0;
@@ -151,12 +151,38 @@ public class Main extends JFrame{
             }
         });
 
+        removeButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                int[] rows = table.getSelectedRows();
+                for(int row : rows) {
+                    piecesModel.removeRow(rows[0]);
+                    pieces.remove(rows[0]);
+                    System.out.println(row);
+                }
+            }
+        });
+
+        duplicateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = table.getSelectedRow();
+                for(int i = 0; i < piecesModel.getColumnCount(); i++){
+                    data[i] = piecesModel.getValueAt(row, i);
+                }
+
+                piecesModel.addRow(data);
+                pieces.add(new Piece(data[0].toString(), (double)data[1], (double)data[2]));
+            }
+        });
         //adding buttons to our two panels, then adding the two panels to our main screen
         mainPanel.add(customButton, BorderLayout.SOUTH);
         mainPanel.add(premadeButton, BorderLayout.SOUTH);
         mainPanel.add(endButton);
         table.setModel(piecesModel);
         tablePanel.add(headerLabel, BorderLayout.NORTH);
+        tablePanel.add(removeButton, BorderLayout.EAST);
+        tablePanel.add(duplicateButton, BorderLayout.EAST);
         add(mainPanel, BorderLayout.SOUTH);
         add(tablePanel, BorderLayout.NORTH);
 
@@ -169,6 +195,7 @@ public class Main extends JFrame{
         table.setFillsViewportHeight(true);
 
         tablePanel.add(scrollPane, BorderLayout.NORTH);
+
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

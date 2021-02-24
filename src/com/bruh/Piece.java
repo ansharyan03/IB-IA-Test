@@ -13,10 +13,6 @@ public class Piece {
 
     public Piece(String pieceName, double price, double weight){
         this.pieceName = pieceName;
-        this.length = length;
-        this.width = width;
-        this.height = height;
-        volumeTaken = this.length * this.width * this.height;
         this.weight = weight;
         partPrice = price;
     }
@@ -28,7 +24,8 @@ public class Piece {
         this.height = height;
         this.sheetMetalThickness = sheetMetalThickness;
         pieceName = mat.getName() + " chassis piece";
-        volumeTaken = ((this.length * this.width * this.sheetMetalThickness) * 2) + (this.length * (this.height-2*this.sheetMetalThickness) * this.sheetMetalThickness);
+        volumeTaken = ((this.length * this.width * this.sheetMetalThickness) * 2)
+                + (this.length * (this.height-2*this.sheetMetalThickness) * this.sheetMetalThickness);
         volumeTaken *= (8.0/9.0);
         weight = currentMat.getDensity() * volumeTaken;
         partPrice = currentMat.getPrice() * weight;
