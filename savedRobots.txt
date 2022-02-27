@@ -1,28 +1,13 @@
-end robot weight: 0.0, price: 0.0.﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
-Traction wheel, 1.0, 1.0
-Traction wheel, 1.0, 1.0
-Aluminum C-Channel (72 in), 59.0, 2.6
-end robot weight: 6.6, price: 63.0.aluminum chassis piece, 80.01191645416667, 3.2004766581666666
-﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
-end robot weight: 8.200476658166666, price: 85.01191645416667.﻿Generic CAN Motor, 1.0, 1.0
-end robot weight: 1.0, price: 1.0.﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
-end robot weight: 5.0, price: 5.0.﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
-﻿Generic CAN Motor, 1.0, 1.0
+aluminum chassis piece, 80.01191645416667, 3.2004766581666666
+MKBattery 12v, 30.0, 12.89
+Aluminum C-Channel (30 in), 29.0, 1.02
+Aluminum C-Channel (30 in), 29.0, 1.02
 FRC Kit of Parts, 1600.0, 50.0
+endrobot, sam, total weight: 68.13047665816667, total price: 1768.0119164541666
+aluminum chassis piece, 80.01191645416667, 3.2004766581666666
+Aluminum C-Channel (30 in), 29.0, 1.02
+Aluminum C-Channel (30 in), 29.0, 1.02
 FRC Kit of Parts, 1600.0, 50.0
-FRC Kit of Parts, 1600.0, 50.0
-FRC Kit of Parts, 1600.0, 50.0
-end robot weight: 206.0, price: 6406.0.
+Aluminum C-Channel (30 in), 29.0, 1.02
+Aluminum C-Channel (30 in), 29.0, 1.02
+endrobot, sam 2, total weight: 57.28047665816668, total price: 1796.0119164541666

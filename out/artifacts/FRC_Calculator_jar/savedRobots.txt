@@ -1,0 +1,18 @@
+aluminum chassis piece, 62.933742689999995, 2.5173497075999998
+aluminum chassis piece, 26.22239278749999, 1.0488957114999997
+Aluminum C-Channel (30 in), 29.0, 1.02
+﻿CIM motor, 35.0, 2.8
+MKBattery 12v, 30.0, 12.89
+FRC Kit of Parts, 1600.0, 50.0
+Aluminum C-Channel (72 in), 59.0, 2.6
+Aluminum C-Channel (30 in), 29.0, 1.02
+Aluminum C-Channel (72 in), 59.0, 2.6
+endrobot, testrobot, total weight: 76.49624541909999, total price: 1930.1561354775
+aluminum chassis piece, 62.933742689999995, 2.5173497075999998
+Aluminum C-Channel (30 in), 29.0, 1.02
+﻿CIM motor, 35.0, 2.8
+MKBattery 12v, 30.0, 12.89
+FRC Kit of Parts, 1600.0, 50.0
+Aluminum C-Channel (72 in), 59.0, 2.6
+Aluminum C-Channel (72 in), 59.0, 2.6
+endrobot, testrobot 2, total weight: 74.42734970759999, total price: 1874.93374269
